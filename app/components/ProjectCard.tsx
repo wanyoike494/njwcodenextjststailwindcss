@@ -1,5 +1,6 @@
-import { ExternalLink, Tag } from "lucide-react";
+import { ArrowRight, Tag } from "lucide-react";
 import type { Project } from "@/lib/projects";
+import Link from "next/link";
 
 interface ProjectCardProps {
   project: Project;
@@ -22,10 +23,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       style={{ animationDelay: `${index * 60}ms`, opacity: 0 }}
     >
       {/* Preview area */}
-      <a
+      <Link
         href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="block relative overflow-hidden"
         aria-label={`Open ${project.title}`}
       >
@@ -45,24 +44,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center z-20">
             <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 text-gray-800 text-sm font-semibold px-4 py-2 rounded-full flex items-center gap-1.5 shadow-lg">
-              <ExternalLink size={14} />
+              <ArrowRight size={14} />
               Open project
             </span>
           </div>
         </div>
-      </a>
+      </Link>
 
       {/* Body */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="font-bold text-gray-900 text-lg mb-1.5 leading-tight">
-          <a
+          <Link
             href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
             className="hover:text-indigo-600 transition-colors duration-200"
           >
             {project.title}
-          </a>
+          </Link>
         </h3>
         <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">
           {project.description}
